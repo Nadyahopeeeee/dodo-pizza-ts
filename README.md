@@ -4,10 +4,15 @@
 https://dodo-pizza-ts.vercel.app/
 
 ## Stack:
-- ReactJS + хуки (в том числе кастомный)
-- React Router (библиотека для реализации переходов без перезагрузки страницы)
-- React Context (передача и использование данных в любом компоненте без использования пропсов)
-- React Skeleton (динамическая загрузка кода в браузере (разделение сборки))
-- Mock.api (для хранения товара на фейковом сервере)
-- Axios (библиотека для отправки AJAX-запросов)
-- SCSS
+- ReactJS 18
+- TypeScript
+- Redux Toolkit (хранение данных / пицц)
+- React Router v6 (навигация)
+- Axios + Fetch (отправка запроса на бэкенд)
+- React Hooks (хуки)
+- Prettier (форматирование кода)
+- CSS-Modules / SCSS (стилизация)
+- React Content Loader (скелетон)
+- React Pagination (пагинация)
+- Lodash.Debounce
+- Code Splitting, React Loadable, useWhyDidYouUpdate
