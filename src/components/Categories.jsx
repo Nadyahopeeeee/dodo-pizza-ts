@@ -4,9 +4,9 @@ function Categories({ items, onClickItem }) {
   const [activeCategory, setActiveCategory] = React.useState(0);
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
-  const onSelectCategory = (i) => {
-    setActiveCategory(i);
-  };
+  // const onSelectCategory = (i) => {
+  //   setActiveCategory(i);
+  // };
 
   return (
     <div className="categories">
@@ -16,7 +16,7 @@ function Categories({ items, onClickItem }) {
             <li
               key={categoryName}
               className={activeCategory === i ? 'active' : ''}
-              onClick={() => onSelectCategory(i)}
+              onClick={() => setActiveCategory(i)}
             >
               {categoryName}
             </li>

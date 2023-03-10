@@ -1,24 +1,25 @@
 import React from 'react';
 
-function SortPopup({ items }) {
-  const [visiblePopup, setVisiblePopup] = React.useState(false);
-  const [activeItem, setActiveItem] = React.useState(0);
+function SortPopup() {
+  const list = ['популярности', 'цене', 'алфовиту'];
+  const [openPopup, setOpenPopup] = React.useState(false);
+  const [selectSort, setSelectSort] = React.useState(0);
   const sortRef = React.useRef();
-  const activeLabel = items[activeItem];
+  const activeLabel = list[selectSort];
 
   const onSelectItem = (i) => {
-    setActiveItem(i);
-    setVisiblePopup(false);
+    setSelectSort(i);
+    setOpenPopup(false);
   };
 
-  const toggleVisiblePopup = () => {
-    setVisiblePopup(!visiblePopup);
+  const toggleOpenPopup = () => {
+    setOpenPopup(!openPopup);
   };
 
   const handleOutsideClick = (event) => {
     let path = event.path || (event.composedPath && event.composedPath());
     if (!path.includes(sortRef.current)) {
-      setVisiblePopup(false);
+      setOpenPopup(false);
     }
   };
 
@@ -30,7 +31,7 @@ function SortPopup({ items }) {
     <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
-          className={visiblePopup ? 'rotated' : ''}
+          className={openPopup ? 'rotated' : ''}
           width="10"
           height="6"
           viewBox="0 0 10 6"
@@ -43,15 +44,15 @@ function SortPopup({ items }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={toggleVisiblePopup}>{activeLabel}</span>
+        <span onClick={toggleOpenPopup}>{activeLabel}</span>
       </div>
-      {visiblePopup && (
+      {openPopup && (
         <div className="sort__popup">
           <ul>
-            {items &&
-              items.map((name, i) => (
+            {list &&
+              list.map((name, i) => (
                 <li
-                  className={activeItem === i ? 'active' : ''}
+                  className={selectSort === i ? 'active' : ''}
                   onClick={() => onSelectItem(i)}
                   key={`${name}_${i}`}
                 >
