@@ -1,7 +1,9 @@
 import React from 'react';
 
-function NotFound() {
-  return <h2>Пиццы не найдены :( </h2>;
-}
+import NotFoundBlock from '../components/NotFoundComponent';
+
+const NotFound = () => {
+  return <NotFoundBlock />;
+};
 
 export default NotFound;

@@ -3,10 +3,19 @@ import React from 'react';
 import { Categories, SortPopup, PizzaBlock } from '../components';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 
-function Home({ pizzas, isLoading }) {
-  // const [isLoading, setIsLoading] = React.useState(false);
-  // console.log({ pizzas });
-  // console.log(pizzas);
+const Home = () => {
+  const [pizzas, setPizzas] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    fetch('http://localhost:3001/pizzas')
+      .then((resp) => resp.json())
+      .then((json) => {
+        // console.log(json);
+        setPizzas(json);
+        setIsLoading(false);
+      });
+  }, []);
 
   return (
     <div className="container">
@@ -22,6 +31,6 @@ function Home({ pizzas, isLoading }) {
       </div>
     </div>
   );
-}
+};
 
 export default Home;
