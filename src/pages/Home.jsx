@@ -1,4 +1,5 @@
 import React from 'react';
+import { SearchContext } from '../App';
 
 // import { Categories, SortPopup, PizzaBlock } from '../components';
 import Categories from '../components/Categories';
@@ -7,17 +8,20 @@ import PizzaBlock from '../components/PizzaBlock';
 import Pagination from '../components/Pagination';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 
-const Home = ({ searchValue, setSearchValue }) => {
+const Home = () => {
+  const { searchValue } = React.useContext(SearchContext);
+
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
-  // добавить пагинацию бекенд (#10, 01:00), нужен мокапи
+  // 2) добавить пагинацию бекенд (#10, 01:00), нужен мокапи
   const [currentPage, setCurrentPage] = React.useState(0);
   const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'rating' });
 
   React.useEffect(() => {
     setIsLoading(true);
-    //добавить сравнение по id (#9, 51:00), нужен мокапи
+    // 1) добавить сравнение по id (#9, 51:00), нужен мокапи
+    // 2) добавить пагинацию бекенд (#10, 01:00), нужен мокапи
     fetch('https://dodo-pizzas.wiremockapi.cloud/pizzas')
       .then((resp) => resp.json())
       .then((json) => {
