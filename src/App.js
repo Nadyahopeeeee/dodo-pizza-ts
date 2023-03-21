@@ -1,18 +1,33 @@
 import React from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { decrement, increment } from './redux/slices/filterSlice';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
 import { Home, Cart, NotFound } from './pages';
 
 export const SearchContext = React.createContext('');
-console.log(SearchContext);
 
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
-  console.log(searchValue);
+
+  // const filter = useSelector((state) => state.filter.value);
+  // const dispatch = useDispatch();
 
   return (
     <div className="wrapper">
+      {/* <div>
+        <div>
+          <button aria-label="Increment value" onClick={() => dispatch(increment())}>
+            Increment
+          </button>
+          <span>{filter}</span>
+          <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
+            Decrement
+          </button>
+        </div>
+      </div> */}
+
       <SearchContext.Provider value={{ searchValue, setSearchValue }}>
         <Header />
         <div className="content">
