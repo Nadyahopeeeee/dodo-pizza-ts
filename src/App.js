@@ -1,18 +1,13 @@
-import React from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { decrement, increment } from './redux/slices/filterSlice';
+import React, { useState, createContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
 import { Home, Cart, NotFound } from './pages';
 
-export const SearchContext = React.createContext('');
+export const SearchContext = createContext('');
 
 function App() {
-  const [searchValue, setSearchValue] = React.useState('');
-
-  // const filter = useSelector((state) => state.filter.value);
-  // const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <div className="wrapper">
