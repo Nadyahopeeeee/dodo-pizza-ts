@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setCategoryId } from '../redux/slices/filterSlice';
@@ -16,21 +16,25 @@ const Home = () => {
   const { categoryId, sort } = useSelector((state) => state.filter);
   // const sortType = useSelector((state) => state.filter.sort.sortProperty);
 
-  const { searchValue } = React.useContext(SearchContext);
-  const [pizzas, setPizzas] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const { searchValue } = useContext(SearchContext);
+  const [pizzas, setPizzas] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   // 2) добавить пагинацию бекенд (#10, 01:00), нужен мокапи
-  const [currentPage, setCurrentPage] = React.useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsLoading(true);
     // 1) добавить сравнение по id (#9, 51:00), нужен мокапи
     // 2) добавить пагинацию бекенд (#10, 01:00), нужен мокапи
-    fetch('https://dodo-pizzas.wiremockapi.cloud/pizzas')
+    fetch(
+      `https://my-json-server.typicode.com/Nadyahopeeeee/dodo-pizzas-server/pizzas?${
+        categoryId > 0 ? `category=${categoryId}` : ''
+      }`,
+    )
       .then((resp) => resp.json())
       .then((json) => {
         // console.log(json);
