@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import CartItem from '../components/CartItem';
+// import CartEmpty from '../components/CartEmpty';
+import { clearItems, selectCart } from '../redux/slices/cartSlice';
 
-import { CartItem } from '../components';
-
-function Cart() {
-  const { totalPrice, items } = useSelector({});
-
+const Test = () => {
   return (
     <div className="container container--cart">
       <div class="cart">
@@ -85,9 +84,9 @@ function Cart() {
           </div>
         </div>
         <div class="content__items">
-          {items.map((item) => (
+          {/* {items.map((item) => (
             <CartItem key={item.id} {...item} />
-          ))}
+          ))} */}
         </div>
         <div class="cart__bottom">
           <div class="cart__bottom-details">
@@ -97,7 +96,7 @@ function Cart() {
             </span>
             <span>
               {' '}
-              Сумма заказа: <b>{totalPrice} ₽</b>{' '}
+              Сумма заказа: <b>22 ₽</b> Сумма заказа: <b>22 ₽</b>{' '}
             </span>
           </div>
           <div class="cart__bottom-buttons">
@@ -128,6 +127,6 @@ function Cart() {
       </div>
     </div>
   );
-}
+};
 
-export default Cart;
+export default Test;
