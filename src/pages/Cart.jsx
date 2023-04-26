@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearItems } from '../redux/slices/cartSlice';
 
 import { CartItem } from '../components';
 
 function Cart() {
-  const { totalPrice, items } = useSelector({});
+  const dispatch = useDispatch();
+  const { totalPrice, items } = useSelector((state) => state.cart);
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+
+  const onClickClear = () => {
+    if (window.confirm('Вы действительно хотите очистить корзину?')) {
+      dispatch(clearItems());
+    }
+  };
 
   return (
     <div className="container container--cart">
@@ -43,7 +52,7 @@ function Cart() {
             </svg>
             Корзина
           </h2>
-          <div class="cart__clear">
+          <div onClick={onClickClear} class="cart__clear">
             <svg
               width="20"
               height="20"
@@ -80,7 +89,6 @@ function Cart() {
                 strokeLinejoin="round"
               ></path>
             </svg>
-
             <span>Очистить корзину</span>
           </div>
         </div>
@@ -93,7 +101,7 @@ function Cart() {
           <div class="cart__bottom-details">
             <span>
               {' '}
-              Всего пицц: <b>{0} шт.</b>{' '}
+              Всего пицц: <b>{totalCount} шт.</b>{' '}
             </span>
             <span>
               {' '}
