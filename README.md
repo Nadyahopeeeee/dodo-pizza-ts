@@ -1,11 +1,10 @@
-# Интернет-магазин кроссовок
+Dodo pizza store
 
 ## Deploy:
 https://dodo-pizza-ts.vercel.app/
 
 ## Stack:
 - ReactJS 18
-- TypeScript
 - Redux Toolkit (хранение данных / пицц)
 - React Router v6 (навигация)
 - Axios + Fetch (отправка запроса на бэкенд)
